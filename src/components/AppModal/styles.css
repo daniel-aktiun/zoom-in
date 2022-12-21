@@ -1,0 +1,11 @@
+.modal-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-container > div {
+  padding: 16px;
+  width: 30%;
+}
