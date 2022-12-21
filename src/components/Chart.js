@@ -3,12 +3,12 @@ import HighchartsReact from "highcharts-react-official";
 // import HighchartsExporting from "highcharts/modules/exporting";
 // HighchartsExporting(Highcharts);
 
-const options = {
+const options = (fullScreen = false) => ({
   title: {
     text: "",
   },
   chart: {
-    height: 300,
+    height: fullScreen ? "40%" : "300px",
   },
   yAxis: [
     {
@@ -27,10 +27,12 @@ const options = {
     },
   ],
   credits: false,
-};
+});
 
-const Chart = () => {
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+const Chart = ({ fullScreen = false }) => {
+  return (
+    <HighchartsReact highcharts={Highcharts} options={options(fullScreen)} />
+  );
 };
 
 export default Chart;

@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
+import { useState } from "react";
 import Chart from "../Chart";
+import Controls from "../Controls";
 
 const style = {
   position: "absolute",
@@ -12,11 +14,18 @@ const style = {
   p: 4,
 };
 
+const INITIAL_STATE = 100;
+
 const FullScreen = () => {
+  const [zoom, setZoom] = useState(INITIAL_STATE);
+
   return (
-    <Box sx={style}>
-      <Chart />
-    </Box>
+    <>
+      <Controls zoom={zoom} setZoom={setZoom} />
+      <Box sx={style} style={{ zoom: `${zoom}%` }}>
+        <Chart fullScreen={true} />
+      </Box>
+    </>
   );
 };
 
