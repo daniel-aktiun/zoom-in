@@ -1,5 +1,7 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+// import HighchartsExporting from "highcharts/modules/exporting";
+// HighchartsExporting(Highcharts);
 
 const options = {
   title: {
