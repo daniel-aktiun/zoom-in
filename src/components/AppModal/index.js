@@ -2,6 +2,8 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import "./styles.css";
 import Chart from "../Chart";
+import Controls from "../Controls";
+import { useState } from "react";
 
 const style = {
   position: "absolute",
@@ -15,6 +17,8 @@ const style = {
 };
 
 const AppModal = ({ open, handleClose }) => {
+  const [zoom, setZoom] = useState(100);
+
   return (
     <Modal
       open={open}
@@ -22,20 +26,23 @@ const AppModal = ({ open, handleClose }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
-        <h3>Modal</h3>
-        <div className="modal-container">
-          <div>
-            <Chart />
+      <>
+        <Controls setZoom={setZoom} zoom={zoom} />
+        <Box sx={style} style={{ zoom: `${zoom}%` }}>
+          <h3>Modal</h3>
+          <div className="modal-container">
+            <div>
+              <Chart />
+            </div>
+            <div>
+              <Chart />
+            </div>
+            <div>
+              <Chart />
+            </div>
           </div>
-          <div>
-            <Chart />
-          </div>
-          <div>
-            <Chart />
-          </div>
-        </div>
-      </Box>
+        </Box>
+      </>
     </Modal>
   );
 };
