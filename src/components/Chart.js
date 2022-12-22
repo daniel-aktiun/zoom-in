@@ -1,9 +1,11 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { useMemo } from "react";
+import { generateRandomIntegerInRange as randomNumber } from "../utils";
 // import HighchartsExporting from "highcharts/modules/exporting";
 // HighchartsExporting(Highcharts);
 
-const options = (fullScreen = false) => ({
+const getOptions = (fullScreen = false) => ({
   title: {
     text: "",
   },
@@ -23,16 +25,16 @@ const options = (fullScreen = false) => ({
       dataLabels: {
         enabled: false,
       },
-      data: [1, 2, 3],
+      data: [randomNumber(), randomNumber(), randomNumber()],
     },
   ],
   credits: false,
 });
 
 const Chart = ({ fullScreen = false }) => {
-  return (
-    <HighchartsReact highcharts={Highcharts} options={options(fullScreen)} />
-  );
+  const options = useMemo(() => getOptions(fullScreen), [fullScreen]);
+
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
 export default Chart;

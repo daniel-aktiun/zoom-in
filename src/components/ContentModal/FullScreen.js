@@ -19,8 +19,7 @@ const INITIAL_STATE = 100;
 
 const FullScreen = () => {
   const ref = createRef(null);
-  const [image, takeScreenshot] = useScreenshot();
-  const getImage = () => takeScreenshot(ref.current);
+  const [, takeScreenshot] = useScreenshot();
   const [zoom, setZoom] = useState(INITIAL_STATE);
 
   const download = (image, { name = "img", extension = "jpg" } = {}) => {
@@ -37,7 +36,6 @@ const FullScreen = () => {
       <Controls
         zoom={zoom}
         setZoom={setZoom}
-        getImage={getImage}
         downloadScreenshot={downloadScreenshot}
       />
       <Box sx={style} style={{ zoom: `${zoom}%` }}>
