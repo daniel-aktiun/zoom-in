@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { createRef, useState } from "react";
+import { useScreenshot, createFileName } from "use-react-screenshot";
 import Chart from "../Chart";
 import Controls from "../Controls";
 
@@ -17,13 +18,32 @@ const style = {
 const INITIAL_STATE = 100;
 
 const FullScreen = () => {
+  const ref = createRef(null);
+  const [image, takeScreenshot] = useScreenshot();
+  const getImage = () => takeScreenshot(ref.current);
   const [zoom, setZoom] = useState(INITIAL_STATE);
+
+  const download = (image, { name = "img", extension = "jpg" } = {}) => {
+    const a = document.createElement("a");
+    a.href = image;
+    a.download = createFileName(extension, name);
+    a.click();
+  };
+
+  const downloadScreenshot = () => takeScreenshot(ref.current).then(download);
 
   return (
     <>
-      <Controls zoom={zoom} setZoom={setZoom} />
+      <Controls
+        zoom={zoom}
+        setZoom={setZoom}
+        getImage={getImage}
+        downloadScreenshot={downloadScreenshot}
+      />
       <Box sx={style} style={{ zoom: `${zoom}%` }}>
-        <Chart fullScreen={true} />
+        <div ref={ref} style={{ padding: "1rem" }}>
+          <Chart fullScreen={true} />
+        </div>
       </Box>
     </>
   );
