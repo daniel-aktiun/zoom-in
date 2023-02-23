@@ -2,8 +2,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useMemo } from "react";
 import { generateRandomIntegerInRange as randomNumber } from "../utils";
-// import HighchartsExporting from "highcharts/modules/exporting";
-// HighchartsExporting(Highcharts);
+import HighchartsExporting from "highcharts/modules/exporting";
+HighchartsExporting(Highcharts);
 
 const getOptions = (fullScreen = false) => ({
   title: {
@@ -21,9 +21,8 @@ const getOptions = (fullScreen = false) => ({
   ],
   series: [
     {
-      showInLegend: false,
       dataLabels: {
-        enabled: false,
+        enabled: true,
       },
       data: [randomNumber(), randomNumber(), randomNumber()],
     },

@@ -16,36 +16,20 @@ const style = {
 };
 
 const ChartsContainer = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   return (
     <Box sx={style}>
       <h3>Modal</h3>
       <div className="modal-container">
         <div>
-          <button onClick={handleOpen} className="modal-container__button">
-            ▣
-          </button>
           <Chart />
         </div>
         <div>
-          <button onClick={handleOpen} className="modal-container__button">
-            ▣
-          </button>
           <Chart />
         </div>
         <div>
-          <button onClick={handleOpen} className="modal-container__button">
-            ▣
-          </button>
           <Chart />
         </div>
       </div>
-      <AppModal open={open} handleClose={handleClose}>
-        <FullScreen />
-      </AppModal>
     </Box>
   );
 };
