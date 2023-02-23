@@ -1,8 +1,5 @@
 import Box from "@mui/material/Box";
-import { useState } from "react";
-import AppModal from "../AppModal";
 import Chart from "../Chart";
-import FullScreen from "./FullScreen";
 
 const style = {
   position: "absolute",
